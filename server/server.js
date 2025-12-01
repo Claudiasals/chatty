@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 app.post("/api/gemini", async (req, res) => {
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -37,6 +37,7 @@ app.post("/api/gemini", async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Errore nel server" });
   }
+  console.log(process.env.GEMINI_API_KEY)
 });
 
 const PORT = 3000;
