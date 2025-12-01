@@ -25,9 +25,9 @@ Obbligatorio. Il nome di Model da utilizzare per generare il completamento.
 ---> Formato: models/{model}. Assume la forma models/{model}.
 
 poi integro la mia API KEY:
-scrivendo alla fine del mio link "?key="" + il codice della key "AIzaSyCEWY1w4cLLLur8OKYYEZcNhdBGX3K5Qjg"
+scrivendo alla fine del mio link "?key="" + il codice della key "***"
 */
-const endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyCEWY1w4cLLLur8OKYYEZcNhdBGX3K5Qjg"
+const endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyBT5EP-O_22NkWxn8xwVDmwLr-DmJWtcmo"
 
 
 
