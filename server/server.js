@@ -7,6 +7,10 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+// Servire i file statici del front-end
+app.use(express.static("../client")); // aggiorna il percorso se necessario
+
+
 // Endpoint proxy
 app.post("/api/gemini", async (req, res) => {
   try {
