@@ -6,6 +6,9 @@ import { fileURLToPath } from "url";
 
 dotenv.config();
 
+console.log(process.env.GEMINI_API_KEY)
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -32,12 +35,14 @@ app.post("/api/gemini", async (req, res) => {
       }
     );
     const data = await response.json();
+
+    console.log("Risposta da Gemini:", data)
+    
     res.json(data);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Errore nel server" });
   }
-  console.log(process.env.GEMINI_API_KEY)
 });
 
 const PORT = 3000;
