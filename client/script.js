@@ -217,17 +217,19 @@ async function getAnswerFromGemini() {
     const data = await response.json();
 
     //@ RECUPERO IL TESTO DELLA RISPOSTA
-    // facciamo console.log di response e cerchiamo la risposta di gemini in candidates che è un array quindi []
-    // poi c'è una chiave "contents" quindi è un oggetto, allora si scrive .contents, poi vediamo parts che è un array quindi .parts[0],
-    // w poi troviamo "text" col msg, .text 
-    const answer = data.candidates[0].content.parts[0].text // così avremo la nostra stringa della risposta.
-
-    // provo a verificare:
-    console.log(answer)
-
-    //@ METTO LA RISPOSTA DI GEMINI NEI MESSAGGI IN CHAT! UTILIZZANDO LA FUNZIONE PER 
-    // AGGIUNGERE UN MESSAGGIO : ADDMESSAGE
-    addMessage("received", answer) // richiamo la classe received della funzione e richiamo la risposta di gemini
+    if (data.candidates && data.candidates.length > 0) {
+        const parts = data.candidates[0].content.parts;
+        if (parts && parts.length > 0 && parts[0].text) {
+          const answer = parts[0].text;
+          console.log(answer);
+          addMessage("received", answer);
+        } else {
+          console.error("Nessun testo nei parts:", data);
+          addMessage("received", "Errore: risposta vuota da Gemini");
+        }
+      } else {
+        console.error("Risposta Gemini non valida:", data);
+        addMessage("received", "Errore: nessuna risposta da Gemini");
+      }
 
 }
-
